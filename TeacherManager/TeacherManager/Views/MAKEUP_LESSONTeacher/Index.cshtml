@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TeacherManager.Models.MAKEUP_LESSON>
+
+@{
+    ViewBag.Title = "Đơn dạy bù - Timetable";
+    Layout = null;
+}
+<style>
+    h4 {
+        color: #191970;
+    }
+    .btn-modal {
+        color: #F8CD0A;
+        background-color: #191970;
+    }
+</style>
+<div style="height:70vh">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SUBJECT.TEACHER.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CLASSROOM.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SUBJECT.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ROOM.NAME_ROM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIMESTART)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIMEEND)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SITUATION)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBJECT.TEACHER.NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ROOM.NAME_ROM)
+                </td>
+                <td>
+                    <p>@item.DATE.Value.ToString("dd/MM/yyyy")</p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIMESTART)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIMEEND)
+                </td>
+                <td>
+                    <p class="font-weight-bold text-primary">@item.SITUATION</p>
+                </td>
+                <td>
+                    @{
+                        if (item.SITUATION != "Đã duyệt")
+                        {
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleMAKEUP_LESSON">
+                                Hủy
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleMAKEUP_LESSON" tabindex="-1" aria-labelledby="exampleModalLabelMAKEUP_LESSON" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title fs-5" id="exampleModalLabelMAKEUP_LESSON">Hủy đơn đăng ký dạy bù</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="overflow-auto">
+                                                Bạn có chắc chắn muốn hủy đơn đăng ký dạy bù này không?
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="javascript:submitFormMAKEUP_LESSON(@item.ID)" class="btn btn-modal">Hủy</a>
+                                            <div style="display:none">
+                                                @using (Html.BeginForm("Delete", "MAKEUP_LESSONTeacher", FormMethod.Post, new { @id = "formDelete" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <p class="text-warning">Không thể thao tác</p>
+                        }
+                    }
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        function submitFormMAKEUP_LESSON(Id) {
+            document.getElementById('formDelete').action = '/MAKEUP_LESSONTeacher/Delete/' + Id;
+            document.getElementById('formDelete').submit();
+        }
+
+    </script>

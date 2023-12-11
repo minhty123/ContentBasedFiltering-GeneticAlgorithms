@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TeacherManager.Models.APPLICATION_LEAVE>
+
+@{
+    ViewBag.Title = "Đơn nghỉ phép - Timetable";
+    Layout = null;
+}
+<style>
+    h4{color:#191970;}
+    .btn-modal {
+        color: #F8CD0A;
+        background-color: #191970;
+    }
+</style>
+<div style="height:70vh">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TEACHER.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TEACHER.POSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TEACHER.TEACHER_TYPE.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATESTART)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATEEND)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.REASON)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TYPELEAVE)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.STATUS)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TEACHER.NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TEACHER.POSITION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TEACHER.TEACHER_TYPE.NAME)
+                </td>
+                <td>
+                    <p>@item.DATESTART.Value.ToString("dd/MM/yyyy")</p>
+                </td>
+                <td>
+                    <p>@item.DATEEND.Value.ToString("dd/MM/yyyy")</p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.REASON)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TYPELEAVE)
+                </td>
+                <td>
+                    <p class="font-weight-bold text-primary">@item.STATUS</p>
+                </td>
+                <td>
+                    @{
+                        if (item.STATUS != "Đã duyệt")
+                        {
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleAPPLICATION_LEAVE">
+                                Hủy
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleAPPLICATION_LEAVE" tabindex="-1" aria-labelledby="exampleModalLabelAPPLICATION_LEAVE" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title fs-5" id="exampleModalLabelAPPLICATION_LEAVE">Hủy đơn xin nghỉ phép</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="overflow-auto">
+                                                Bạn có chắc chắn muốn hủy đơn xin nghỉ phép này không?
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="javascript:submitFormAPPLICATION_LEAVE(@item.ID)" class="btn btn-modal">Hủy</a>
+                                            <div style="display:none">
+                                                @using (Html.BeginForm("Delete", "APPLICATION_LEAVETeacher", FormMethod.Post, new { @id = "formDelete" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-warning">Không thể thao tác</p>
+                        }
+                    }
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function submitFormAPPLICATION_LEAVE(Id) {
+        document.getElementById('formDelete').action = '/APPLICATION_LEAVETeacher/Delete/' + Id;
+        document.getElementById('formDelete').submit();
+    }
+
+
+</script>

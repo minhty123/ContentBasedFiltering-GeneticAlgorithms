@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<TeacherManager.Models.NOTIFICATION>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Thông báo - Teacher Timetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .details {
+        text-decoration: none;
+        color: #191970;
+        font-size: 18px;
+    }
+
+    .card-body {
+        background-color: #F8F8FF;
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center;
+    }
+
+    i {
+        align-self: center;
+        font-size: 45px;
+        color: #191970;
+    }
+
+    .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .pagination li {
+        padding: 3px 10px;
+        border: 1px solid #DEE2E6;
+    }
+
+    .PagedList-skipToPrevious {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px
+    }
+
+    .PagedList-skipToNext {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px
+    }
+    a{
+        text-decoration:none;
+    }
+</style>
+
+<section id="about" class="mt-4">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-12">
+                        <div class="card mb-3 card-body">
+                            <div class="row align-items-center h-25">
+                                <div class="col-2 icon">
+                                    <i class="fa-solid fa-briefcase justify-content-center"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="title">
+                                        <h6 class="mb-1">
+                                            @Html.ActionLink(item.TITLE, "Details", new { id = item.ID }, new { @class = "details" })
+                                        </h6>
+                                        <div class="row align-items-center">
+                                            <div class="col-12">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <small class="me-2">Ngày đăng:@item.DATESUBMIT</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="d-flex justify-content-center align-items-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row fs-5"><b>TIN TỨC</b></div>
+                <div class="row">
+                    @Html.Action("GetListNewsNew", "NEWS")
+                </div>
+                <div class="row fs-5"><b>THÔNG BÁO</b></div>
+                <div class="row">
+                    @Html.Action("GetListNotificationsNew", "NOTIFICATIONs")
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

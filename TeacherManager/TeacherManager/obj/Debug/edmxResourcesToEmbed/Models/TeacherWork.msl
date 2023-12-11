@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeacherWorkModelStoreContainer" CdmEntityContainer="TeacherWorkEntities">
+    <EntitySetMapping Name="IMAGES_NEW">
+      <EntityTypeMapping TypeName="TeacherWorkModel.IMAGES_NEW">
+        <MappingFragment StoreEntitySet="IMAGES_NEW">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_NEWS" ColumnName="ID_NEWS" />
+          <ScalarProperty Name="ID_IMAGES_NEW_TYPE" ColumnName="ID_IMAGES_NEW_TYPE" />
+          <ScalarProperty Name="IMAGES" ColumnName="IMAGES" />
+          <ScalarProperty Name="IMAGES_ALT" ColumnName="IMAGES_ALT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES_NEW_TYPE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.IMAGES_NEW_TYPE">
+        <MappingFragment StoreEntitySet="IMAGES_NEW_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS">
+      <EntityTypeMapping TypeName="TeacherWorkModel.NEWS">
+        <MappingFragment StoreEntitySet="NEWS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="DATESUBMIT" ColumnName="DATESUBMIT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FILE_NOTIFICATION">
+      <EntityTypeMapping TypeName="TeacherWorkModel.FILE_NOTIFICATION">
+        <MappingFragment StoreEntitySet="FILE_NOTIFICATION">
+          <ScalarProperty Name="NAME_FILE" ColumnName="NAME_FILE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="ID_NOTIFICATION" ColumnName="ID_NOTIFICATION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTIFICATIONs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.NOTIFICATION">
+        <MappingFragment StoreEntitySet="NOTIFICATION">
+          <ScalarProperty Name="DATESUBMIT" ColumnName="DATESUBMIT" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ARRANGE_TIME_SLOT">
+      <EntityTypeMapping TypeName="TeacherWorkModel.ARRANGE_TIME_SLOT">
+        <MappingFragment StoreEntitySet="ARRANGE_TIME_SLOT">
+          <ScalarProperty Name="ID_TIME_SLOT" ColumnName="ID_TIME_SLOT" />
+          <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASSROOMs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.CLASSROOM">
+        <MappingFragment StoreEntitySet="CLASSROOM">
+          <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID_TEACHERCONSULTANCY" ColumnName="ID_TEACHERCONSULTANCY" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DAYs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.DAY">
+        <MappingFragment StoreEntitySet="DAY">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROOMs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.ROOM">
+        <MappingFragment StoreEntitySet="ROOM">
+          <ScalarProperty Name="NAME_ROM" ColumnName="NAME_ROM" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_TYPE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.TEACHER_TYPE">
+        <MappingFragment StoreEntitySet="TEACHER_TYPE">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIME_SLOT">
+      <EntityTypeMapping TypeName="TeacherWorkModel.TIME_SLOT">
+        <MappingFragment StoreEntitySet="TIME_SLOT">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID_DAY" ColumnName="ID_DAY" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="TeacherWorkModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="TeacherWorkModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="TeacherWorkModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="TeacherWorkModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="TeacherWorkModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="TeacherWorkModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="TEST_SCHEDULE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.TEST_SCHEDULE">
+        <MappingFragment StoreEntitySet="TEST_SCHEDULE">
+          <ScalarProperty Name="TIME" ColumnName="TIME" />
+          <ScalarProperty Name="TIMESTART" ColumnName="TIMESTART" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="NUMBER_STUDENT" ColumnName="NUMBER_STUDENT" />
+          <ScalarProperty Name="ID_ROOM" ColumnName="ID_ROOM" />
+          <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
+          <ScalarProperty Name="ID_TEACHER_CHECK" ColumnName="ID_TEACHER_CHECK" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHERs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.TEACHER">
+        <MappingFragment StoreEntitySet="TEACHER">
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+          <ScalarProperty Name="DATE_BIRTHDAY" ColumnName="DATE_BIRTHDAY" />
+          <ScalarProperty Name="PROFILE_BACKGROUND" ColumnName="PROFILE_BACKGROUND" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID_ACADEMIC_RANK" ColumnName="ID_ACADEMIC_RANK" />
+          <ScalarProperty Name="ID_TEACHERTYPE" ColumnName="ID_TEACHERTYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ACADEMIC_RANK">
+      <EntityTypeMapping TypeName="TeacherWorkModel.ACADEMIC_RANK">
+        <MappingFragment StoreEntitySet="ACADEMIC_RANK">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECTs">
+      <EntityTypeMapping TypeName="TeacherWorkModel.SUBJECT">
+        <MappingFragment StoreEntitySet="SUBJECT">
+          <ScalarProperty Name="ID_ROOM" ColumnName="ID_ROOM" />
+          <ScalarProperty Name="NUMBER_OF_CREDIT" ColumnName="NUMBER_OF_CREDIT" />
+          <ScalarProperty Name="END_DAY" ColumnName="END_DAY" />
+          <ScalarProperty Name="START_DAY" ColumnName="START_DAY" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID_CLASSROOM" ColumnName="ID_CLASSROOM" />
+          <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAKEUP_LESSON">
+      <EntityTypeMapping TypeName="TeacherWorkModel.MAKEUP_LESSON">
+        <MappingFragment StoreEntitySet="MAKEUP_LESSON">
+          <ScalarProperty Name="ID_ROOM" ColumnName="ID_ROOM" />
+          <ScalarProperty Name="SITUATION" ColumnName="SITUATION" />
+          <ScalarProperty Name="TIMEEND" ColumnName="TIMEEND" />
+          <ScalarProperty Name="TIMESTART" ColumnName="TIMESTART" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
+          <ScalarProperty Name="ID_CLASS" ColumnName="ID_CLASS" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APPLICATION_LEAVE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
+        <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
+          <ScalarProperty Name="TYPELEAVE" ColumnName="TYPELEAVE" />
+          <ScalarProperty Name="DATEEND" ColumnName="DATEEND" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="DATESTART" ColumnName="DATESTART" />
+          <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

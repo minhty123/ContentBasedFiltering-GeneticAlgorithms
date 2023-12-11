@@ -1,0 +1,269 @@
+﻿@model IEnumerable<TeacherManager.Models.APPLICATION_LEAVE>
+
+@{
+    ViewBag.Title = "Quản lý đơn nghỉ phép - Teacher Timetable";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_layout.cshtml";
+}
+<style>
+    .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        padding: 0.5rem 0.75rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    h4{color: #191970;}
+    #table-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+
+        #table-container #applicationForLeave {
+            width: 100%;
+        }
+</style>
+<div id="table-container">
+    <div id="applicationForLeave">
+        @foreach (var item in ViewBag.ls)
+        {
+            <div class="modal fade" id="applicationModal-@item.ID" tabindex="-1" aria-labelledby="applicationModalLabel-@item.ID" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="text-center" id="applicationModalLabel-@item.ID">ĐƠN XIN NGHỈ PHÉP</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Tên giảng viên: </span>
+                                    <span>@item.TEACHER.NAME</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Chức vụ: </span>
+                                    <span>@item.TEACHER.POSITION</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Trình độ: </span>
+                                    <span>@item.TEACHER.TEACHER_TYPE.NAME</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Ngày bắt đầu: </span>
+                                    <span>@item.DATESTART.ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Ngày kết thúc: </span>
+                                    <span>@item.DATEEND.ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Lý do: </span>
+                                    <span>@item.REASON</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Loại phép: </span>
+                                    <span>@item.TYPELEAVE</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Tình trạng xử lý: </span>
+                                    <span>@item.STATUS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-content-center justify-content-center my-2">
+                            <button id="btn-duyet-@item.ID" type="button" class="btn btn-primary" data-id="@item.ID">Duyệt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @foreach (var item in Model)
+        {
+            <div class="modal fade" id="applicationModal-@item.ID" tabindex="-1" aria-labelledby="applicationModalLabel-@item.ID" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="text-center" id="applicationModalLabel-@item.ID">ĐƠN XIN NGHỈ PHÉP</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Tên giảng viên: </span>
+                                    <span>@item.TEACHER.NAME</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Chức vụ: </span>
+                                    <span>@item.TEACHER.POSITION</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Trình độ: </span>
+                                    <span>@item.TEACHER.TEACHER_TYPE.NAME</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Ngày bắt đầu: </span>
+                                    <span>@item.DATESTART.Value.ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Ngày kết thúc: </span>
+                                    <span>@item.DATEEND.Value.ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Lý do: </span>
+                                    <span>@item.REASON</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Loại phép: </span>
+                                    <span>@item.TYPELEAVE</span>
+                                </div>
+                                <div class="my-1 ms-2">
+                                    <span class="font-weight-bold">Tình trạng xử lý: </span>
+                                    <span>@item.STATUS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEACHER.NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEACHER.POSITION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEACHER.TEACHER_TYPE.NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DATESTART)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DATEEND)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.REASON)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TYPELEAVE)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.STATUS)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEACHER.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEACHER.POSITION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEACHER.TEACHER_TYPE.NAME)
+                    </td>
+                    <td>
+                        <p>@item.DATESTART.Value.ToString("dd/MM/yyyy")</p>
+                    </td>
+                    <td>
+                        <p>@item.DATEEND.Value.ToString("dd/MM/yyyy")</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.REASON)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TYPELEAVE)
+                    </td>
+                    <td>
+                        <p class="font-weight-bold text-primary">@item.STATUS</p>
+                    </td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#applicationModal-@item.ID" class="btn btn-success">Chi tiết</a> |
+
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example">
+                            Xóa
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title fs-5" id="exampleModalLabel">Xóa đơn xin nghỉ phép</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="overflow-auto">
+                                            Bạn có chắc chắn muốn xóa đơn xin nghỉ phép của giảng viên @item.TEACHER.NAME không?
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                                        <a href="javascript:submitForm(@item.ID)" class="btn btn-primary">Xóa</a>
+                                        <div style="display:none">
+                                            @using (Html.BeginForm("Delete", "APPLICATION_LEAVE", FormMethod.Post, new { @id = "formDelete" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            document.addEventListener('click', function (event) {
+                var clickedButtonId = event.target.id;
+                $("#" + clickedButtonId).click(function () {
+                    var Id = $(this).data("id");
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/Homee/ChangeStatusApplicationLeave',
+                        data: { id: Id },
+                        success: function () {
+                            alert('Bạn đã duyệt đơn thành công!');
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert('Có lỗi xảy ra, mời bạn thử lại sau!');
+                        }
+                    });
+                });
+            });
+        });
+
+        function submitForm(Id) {
+            document.getElementById('formDelete').action = '/Admin/APPLICATION_LEAVE/Delete/' + Id;
+            document.getElementById('formDelete').submit();
+        }
+
+       
+    </script>
+}

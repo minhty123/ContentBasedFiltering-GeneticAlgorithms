@@ -1,0 +1,169 @@
+﻿@model TeacherManager.Models.TEACHER
+
+@{
+    ViewBag.Title = "Quản lý tài khoản - Teacher Timetable";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+    #btnChange, #btnSave {
+        background-color: #191970;
+        color: #F8CD0A;
+    }
+
+        #btnChange:hover, #btnSave:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+
+    .text-theme {
+        color: #F8CD0A;
+    }
+</style>
+
+<div class="container-fluid min-vh-100">
+    @Html.AntiForgeryToken()
+    <div class="row m-2">
+        <div class="col-sm-12 col-md-4 d-flex mb-0 ">
+            <div class="row embed-responsive embed-responsive-1by1 position-relative">
+                @{
+                    if (Model.PROFILE_BACKGROUND != null)
+                    {
+                        <div class="embed-responsive mt-3">
+                            <img class="rounded-circle embed-responsive-item img-fluid" src="~/Content/images/account/@Model.PROFILE_BACKGROUND" width="100%" />
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="embed-responsive mt-3">
+                            <img class="rounded-circle embed-responsive-item img-fluid" src="~/Content/images/account/icons8-account-64.png" width="100%" />
+                        </div>
+                    }
+
+                }
+            </div>
+            <div class="btn-group dropstart position-relative mt-0">
+                <a data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" id="upload-image">Tải ảnh lên...</a></li>
+                    <li><a class="dropdown-item" href="#" id="delete-image">Xóa ảnh</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-12 col-md-8 d-flex flex-column shadow rounded-2 my-2 min-vh-100">
+            <h3 class="text-theme mt-3 mx-1">Thông tin cá nhân</h3>
+            <div class="d-flex flex-column m-3">
+                <div class="form-floating mb-3 flex-fill mx-1">
+                    <input type="text" class="form-control" value="@Model.NAME" readonly>
+                    <label for="floatingInput">Tên</label>
+                </div>
+                <div class="form-floating mb-3 flex-fill mx-1">
+                    <input type="text" class="form-control" value="@Model.TEACHER_TYPE.NAME" readonly>
+                    <label for="floatingInput">Loại giảng viên</label>
+                </div>
+                <div class="form-floating mb-3 flex-fill mx-1">
+                    <input type="text" class="form-control" value="@Model.ACADEMIC_RANK.NAME" readonly>
+                    <label for="floatingInput">Trình độ</label>
+                </div>
+                <div class="form-floating mb-3 flex-fill mx-1">
+                    <input type="text" class="form-control" value="@Model.POSITION" readonly>
+                    <label for="floatingInput">Chức vụ</label>
+                </div>
+                <div class="form-floating mb-3 w-25">
+                    <input type="date" class="form-control" id="floatingDateBirthday" value="@Model.DATE_BIRTHDAY.Value.ToString("yyyy-MM-dd")" placeholder="Nhập ngày sinh">
+                    <label for="floatingDateBirthday">Ngày sinh<i class="fas fa-pencil-alt mx-1"></i></label>
+                </div>
+                <div class="form-floating mb-3 flex-fill">
+                    <input type="text" class="form-control" id="floatingAddress" value="@Model.ADDRESS" placeholder="Nhập địa chỉ">
+                    <label for="floatingAddress">Địa chỉ<i class="fas fa-pencil-alt mx-1"></i></label>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-content-center">
+                <button id="btnSave" class="form-control w-25 mx-3" type="button"><i class="fa-solid fa-floppy-disk mx-2"></i>Lưu thay đổi</button>
+                <button id="btnChange" class="form-control text-center w-25 text-decoration-none mx-3" data-bs-toggle="modal" , data-bs-target="#ModalChangePass"><i class="fa-solid fa-key mx-2"></i>Đổi mật khẩu</button>
+            </div>
+        </div>
+        @Html.Action("ChangePassword", "Manage")
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        // Bắt sự kiện click vào thẻ a
+        document.getElementById('upload-image').addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn chặn trình duyệt điều hướng đến URL khác
+
+            // Tạo một thẻ input mới kiểu "file" và thêm vào DOM
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.click();
+            input.addEventListener('change', handleFileSelect);
+        });
+
+        function handleFileSelect(event) {
+            var file = event.target.files[0]; // Lấy tập tin đầu tiên trong danh sách
+            var formData = new FormData(); // Tạo đối tượng FormData
+            formData.append('file', file); // Thêm tập tin vào FormData
+
+            // Gửi yêu cầu AJAX đến hành động Upload trong HomeController
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Manage/Upload', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    location.reload();
+                } else {
+                    alert("Thất bại");
+                }
+            };
+            xhr.send(formData);
+        }
+
+        $("#btnSave").click(function () {
+
+            var Birthday = $('#floatingDateBirthday').val();
+            var Address = $('#floatingAddress').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Manage/EditAccount",
+                data: { day : Birthday, address: Address },
+                success: function (result) {
+                    alert("Bạn đã thay đổi thông tin thành công!")
+                    window.location.reload();
+                },
+                error: function () {
+                    alert("Thất bại");
+                }
+            });
+        });
+
+        $(function () {
+            document.getElementById('delete-image').addEventListener('click', function (e) {
+                e.preventDefault(); // Ngăn chặn trình duyệt điều hướng đến URL khác
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Manage/DeleteProfileImg",
+                    success: function (result) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                        alert("Error");
+                    }
+                });
+            });
+        });
+    </script>
+
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

@@ -1,0 +1,83 @@
+﻿@*@model  TeacherManager.Models.Class.Schedule*@
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn-register {
+        background-color: #191970;
+        color: #F8CD0A;
+    }
+        .btn-register:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+    .text-theme {
+        color: #F8CD0A;
+    }
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="row justify-content-center my-4">
+    <div class="col-xl-10 col-md-12">
+        <div class="card border-0">
+            <div class="card-body p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-12 my-5">
+                        <div class=" my-auto">
+                            <img src="~/Content/images/account/Events-bro.png" width="400px" height="400px" />
+                        </div>
+
+                    </div>
+                    <div class="col-lg-7 col-md-12 input-infor my-5 shadow">
+                        <div class="p-5">
+                            <div class="mb-5">
+                                <h3 class="font-weight-bold text-theme">Kết quả đăng ký</h3>
+                            </div>
+                            <h3 class="font-weight-bold">Lịch học bù</h3>
+                            <div><b>Lớp: </b> <span>@ViewBag.ClassName.NAME</span></div>
+                            <div><b>Môn: </b><span>@ViewBag.SubjectName.NAME</span></div>
+                            <div><b>Ngày:  </b><span>@ViewBag.Schedule.Day.ToString("dd/MM/yyyy")</span></div>
+                            <div><b>Phòng: </b><span>@ViewBag.Room.NAME_ROM</span></div>
+                            <div class="mb-4"><b>Bắt đầu: </b><span class="mx-1">@ViewBag.timeStart</span><b class="mx-2">Kết thúc: </b><span class="mx-1">@ViewBag.timeEnd</span></div>
+
+                            <div class="d-flex justify-content-center">
+                                <button data-classname="@ViewBag.ClassName.NAME" data-day="@ViewBag.Schedule.Day" data-subjectname="@ViewBag.SubjectName.NAME" data-timestart="@ViewBag.timeStart" data-timeend="@ViewBag.timeEnd" data-room="@ViewBag.Room.NAME_ROM" class="btn btn-register mx-auto" id="btn-xacnhan">Xác nhận</button>
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $(function () {
+            $("#btn-xacnhan").click(function () {
+
+                var ClassName = $(this).data("classname");
+                var SubjectName = $(this).data("subjectname");
+                var Day = $(this).data("day")
+                var TimeStart = $(this).data("timestart");
+                var TimeEnd = $(this).data("timeend");
+                var Room = $(this).data("room");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/TeachingSchedule/AddMakeupLesson",
+                    data: { "classname": ClassName, "subjectname": SubjectName, "day": Day, "timestart": TimeStart, "timeend": TimeEnd, "room": Room },
+                    success: function (result) {
+                        alert("Bạn đã gửi đơn đăng ký thành công!");
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau!");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

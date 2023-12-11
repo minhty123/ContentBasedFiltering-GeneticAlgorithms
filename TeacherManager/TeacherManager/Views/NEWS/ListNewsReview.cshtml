@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TeacherManager.Models.NEWS>
+
+<style>
+    .details {
+        text-decoration: none;
+        font-size: 18px;
+    }
+    .card-body {
+        background-color: #F8F8FF;
+        
+    }
+    .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="col-xl-12">
+        <div class="card mb-3 card-body">
+            <div class="row align-items-center h-25">
+                <div class="col-4">
+                    @foreach (var image in ViewBag.image)
+                    {
+                        if (image.ID_NEWS == item.ID)
+                        {
+                            <a href="#!.html">
+                                <img src="~/Content/images/news/@image.IMAGES" class="rounded-3" alt="" style="max-width:100%;max-height:auto">
+                            </a>
+                            break;
+                        }
+                    }
+
+                </div>
+                <div class="col-8">
+                    <div class="title">
+                        <h6 class="mb-1">
+                            @Html.ActionLink(item.TITLE, "Details", new { id = item.ID, name=item.TITLE}, new { @class = "details" })
+                        </h6>
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <div class="row align-items-center g-0">
+                                    <div class="col-auto">
+                                        <small class="me-2">Ngày đăng: @item.DATESUBMIT</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

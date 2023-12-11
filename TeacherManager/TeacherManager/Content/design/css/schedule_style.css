@@ -1,0 +1,280 @@
+﻿html,
+body {
+    font-family: Lato, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 48px;
+    background-color: #ddd;
+}
+
+ol {
+    list-style: none;
+    border: solid 1px #aaa
+}
+
+/*li{
+    height: 100px;
+}*/
+
+
+.timetable {
+    display: flex;
+    background: #ecf0f1;
+    color: #444;
+}
+
+.nowMarker {
+    position: absolute;
+    border-bottom: 2px solid #ff7f6e;
+    z-index: 100;
+    width: 100%;
+    top: -2px;
+    transition: top 2s ease-in-out;
+}
+
+.timings {
+    margin: 1em 0 0 0;
+    padding: 0 3px 0 0;
+    width: 3em;
+    height: 68em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+td {
+    width: 9.6%;
+    text-align: center;
+}
+
+.week {
+    margin: 0;
+    display: -webkit-flex;
+    display: flex;
+    overflow-x: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.day {
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    padding: 0;
+    min-width: calc(100.5% / 3);
+    transition: min-width 0.2s ease-in-out;
+}
+
+.name {
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
+.hour {
+    position: absolute;
+    height: 4em;
+    text-indent: 3px;
+    width: 100%;
+    color: white;
+}
+
+.hour__1 {
+    top: 4%;
+}
+
+.hour__2 {
+    top: 13.6%;
+}
+
+.hour__3 {
+    top: 23.2%;
+}
+
+.hour__4 {
+    top: 32.8%;
+}
+
+.hour__5 {
+    top: 42.2%;
+}
+
+.hour__6 {
+    top: 52%;
+}
+
+.hour__7 {
+    top: 61.6%;
+}
+
+.hour__8 {
+    top: 71.2%;
+}
+
+.hour__9 {
+    top: 80.8%;
+}
+
+.hour__10 {
+    top: 90.4%;
+}
+
+.hour--1 {
+    height: 9.6%;
+}
+
+.hour--2 {
+    height: 19.2%;
+}
+
+.hour--3 {
+    height: 28.8%;
+}
+
+.hour--4 {
+    height: 38.4%;
+}
+
+.hour--5 {
+    height: 48%;
+}
+
+.slot {
+    background: #3498db;
+}
+
+
+
+@media (min-width: 768px) {
+    .timetable {
+        flex-direction: column;
+    }
+
+    .timings {
+        margin: 0;
+        padding-left: 4%;
+        width: 100%;
+        height: 3em;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+
+    .name {
+        width: 4%;
+        line-height: 5em;
+        height: 5em;
+    }
+
+    .week {
+        flex-direction: column;
+    }
+
+    .hour {
+        top: 0;
+        width: 6%;
+        height: 100%;
+    }
+
+    .hour__1 {
+        left: 4%;
+    }
+
+    .hour__2 {
+        left: 13.6%;
+    }
+
+    .hour__3 {
+        left: 23.2%;
+    }
+
+    .hour__4 {
+        left: 32.8%;
+    }
+
+    .hour__5 {
+        left: 42.2%;
+    }
+
+    .hour__6 {
+        left: 52%;
+    }
+
+    .hour__7 {
+        left: 61.6%;
+    }
+
+    .hour__8 {
+        left: 71.2%;
+    }
+
+    .hour__9 {
+        left: 80.8%;
+    }
+
+    .hour__10 {
+        left: 90.4%;
+    }
+
+    .hour--1 {
+        width: 9.6%;
+    }
+
+    .hour--2 {
+        width: 19.2%;
+    }
+
+    .hour--3 {
+        width: 28.8%;
+    }
+
+    .hour--4 {
+        width: 38.4%;
+    }
+
+    .hour--5 {
+        width: 48%;
+    }
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    height: 48px;
+    background: #aaa;
+}
+
+
+@media(max-width: 768px) {
+    .profile ul {
+        width: 160px;
+        height: 250px;
+        border-radius: 10px;
+        top: 7px;
+        position: absolute;
+        padding: 8px;
+        transition: all 0.1s;
+        z-index: 1;
+        background-color: aqua;
+        right: -50px;
+    }
+}
+
+.profile {
+    position: relative;
+    text-align: center;
+}
+
+    .profile img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer
+    }
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="944c124701934ab189449b91455c9a9f" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="TeacherWorkModel.IMAGES_NEW" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherWorkModel.IMAGES_NEW_TYPE" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherWorkModel.NEWS" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="TeacherWorkModel.PF_IMAGES_NEW_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TeacherWorkModel.PF_IMAGES_NEW_2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TeacherWorkModel.FILE_NOTIFICATION" Width="1.5" PointX="7.625" PointY="6.875" />
+        <EntityTypeShape EntityType="TeacherWorkModel.NOTIFICATION" Width="1.5" PointX="5.375" PointY="6.875" />
+        <AssociationConnector Association="TeacherWorkModel.PF_FILE_NOTIFICATION" />
+        <EntityTypeShape EntityType="TeacherWorkModel.ARRANGE_TIME_SLOT" Width="1.5" PointX="27.5" PointY="7.875" />
+        <EntityTypeShape EntityType="TeacherWorkModel.CLASSROOM" Width="1.5" PointX="11.875" PointY="3.875" />
+        <EntityTypeShape EntityType="TeacherWorkModel.DAY" Width="1.5" PointX="22.75" PointY="3" />
+        <EntityTypeShape EntityType="TeacherWorkModel.ROOM" Width="1.5" PointX="30.875" PointY="1.875" />
+        <EntityTypeShape EntityType="TeacherWorkModel.TEACHER_TYPE" Width="1.5" PointX="18.125" PointY="11.625" />
+        <EntityTypeShape EntityType="TeacherWorkModel.TIME_SLOT" Width="1.5" PointX="25.75" PointY="3.125" />
+        <AssociationConnector Association="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_2" />
+        <AssociationConnector Association="TeacherWorkModel.PF_TIME_SLOT" />
+        <EntityTypeShape EntityType="TeacherWorkModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TeacherWorkModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="TeacherWorkModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="TeacherWorkModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="TeacherWorkModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="TeacherWorkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TeacherWorkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TeacherWorkModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="TeacherWorkModel.TEST_SCHEDULE" Width="1.5" PointX="33.125" PointY="2.25" />
+        <AssociationConnector Association="TeacherWorkModel.TEST_SCHEDULE3" />
+        <EntityTypeShape EntityType="TeacherWorkModel.TEACHER" Width="1.5" PointX="20.375" PointY="5.25" />
+        <AssociationConnector Association="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C" />
+        <AssociationConnector Association="TeacherWorkModel.PF_CLASSROOM" />
+        <AssociationConnector Association="TeacherWorkModel.PF_TEACHER_1" />
+        <AssociationConnector Association="TeacherWorkModel.TEST_SCHEDULE1" />
+        <EntityTypeShape EntityType="TeacherWorkModel.ACADEMIC_RANK" Width="1.5" PointX="18.125" PointY="5.5" />
+        <EntityTypeShape EntityType="TeacherWorkModel.SUBJECT" Width="1.5" PointX="33.125" PointY="6.75" />
+        <AssociationConnector Association="TeacherWorkModel.PF_TEACHER_2" />
+        <AssociationConnector Association="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_1" />
+        <AssociationConnector Association="TeacherWorkModel.PF_SUBJECT_2" />
+        <AssociationConnector Association="TeacherWorkModel.FK__SUBJECT__ID_ROOM__4D5F7D71" />
+        <AssociationConnector Association="TeacherWorkModel.PF_SUBJECT_1" />
+        <AssociationConnector Association="TeacherWorkModel.TEST_SCHEDULE2" />
+        <EntityTypeShape EntityType="TeacherWorkModel.MAKEUP_LESSON" Width="1.5" PointX="35.375" PointY="4.625" />
+        <AssociationConnector Association="TeacherWorkModel.MAKEUP_LESSON2" />
+        <AssociationConnector Association="TeacherWorkModel.FK__MAKEUP_LE__ID_RO__4E53A1AA" />
+        <AssociationConnector Association="TeacherWorkModel.MAKEUP_LESSON3" />
+        <EntityTypeShape EntityType="TeacherWorkModel.APPLICATION_LEAVE" Width="1.5" PointX="22.625" PointY="6" />
+        <AssociationConnector Association="TeacherWorkModel.APPLICATIONLEAVE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

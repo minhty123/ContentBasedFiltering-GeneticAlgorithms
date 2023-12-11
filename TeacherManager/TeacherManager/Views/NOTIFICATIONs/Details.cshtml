@@ -1,0 +1,60 @@
+﻿@model TeacherManager.Models.NOTIFICATION
+
+@{
+    ViewBag.Title = @Model.TITLE;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .content-new {
+        text-align: justify;
+    }
+    .fileName{
+        text-decoration:none;
+    }
+   
+</style>
+<section id="about" class="mt-4">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8 col-12">
+                <b class="fs-4">@Model.TITLE</b>
+                <p class="fst-italic">@Model.DATESUBMIT</p>
+                @Html.Raw("<div class='content-new'>" + Model.CONTENT + "</div>")
+                @foreach (var file in ViewBag.fILE_NOTIFICATIONs)
+                {
+                    <a href="~/Content/files_notification/@file.NAME_FILE" target="_blank" id="pdfLink" class="fileName">@file.TITLE</a>
+                    <iframe id="pdfViewer" style="display:none;"></iframe>
+                    <br />
+                }
+            </div>
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="row fs-5"><b>TIN TỨC</b></div>
+                <div class="row">
+                    @Html.Action("GetListNewsNew", "NEWS")
+                </div>
+                <div class="row fs-5"><b>THÔNG BÁO</b></div>
+                <div class="row">
+                    @Html.Action("GetListNotificationsNew", "NOTIFICATIONs")
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h5 class="ms-1">TIN LIÊN QUAN</h5>
+                @Html.Action("GetListNotificationsSimilar", "NOTIFICATIONs", new { id = @Model.ID })
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#pdfLink').click(function () {
+                $('#pdfViewer').attr('src', $(this).attr('href'));
+                $('#pdfViewer').show();
+                return false;
+            });
+        });
+    </script>
+}

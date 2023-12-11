@@ -1,0 +1,73 @@
+﻿@model TeacherManager.Models.APPLICATION_LEAVE
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>APPLICATION_LEAVE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATESTART)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATESTART)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REASON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REASON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEEND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEEND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPELEAVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPELEAVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEACHER.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEACHER.NAME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

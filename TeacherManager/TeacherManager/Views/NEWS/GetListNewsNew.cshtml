@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TeacherManager.Models.NEWS>
+
+<style>
+    li {
+        list-style: none;
+    }
+
+    .details {
+        text-decoration: none;
+        color: black;
+    }
+        .details:hover {
+            color: #F8CD0A;
+        }
+
+    .fa-chevron-left {
+        font-size: 13px;
+    }
+</style>
+<ul class="ms-1">
+    @foreach (var item in Model)
+    {
+    <li>
+        <i class="fa-solid fa-chevron-left me-1"></i>@Html.ActionLink(item.TITLE, "Details", new { id = item.ID }, new { @class = "details ms-2" }) (<span class="fst-italic">@item.DATESUBMIT</span>)
+    </li>
+    }
+</ul>
+

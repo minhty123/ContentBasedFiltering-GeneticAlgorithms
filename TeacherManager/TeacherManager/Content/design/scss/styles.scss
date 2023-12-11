@@ -1,0 +1,215 @@
+﻿
+@-webkit-keyframes my {
+    0% {
+        color: #F8CD0A;
+    }
+
+    50% {
+        color: #fff;
+    }
+
+    100% {
+        color: #F8CD0A;
+    }
+}
+
+@-moz-keyframes my {
+    0% {
+        color: #F8CD0A;
+    }
+
+    50% {
+        color: #fff;
+    }
+
+    100% {
+        color: #F8CD0A;
+    }
+}
+
+@-o-keyframes my {
+    0% {
+        color: #F8CD0A;
+    }
+
+    50% {
+        color: #fff;
+    }
+
+    100% {
+        color: #F8CD0A;
+    }
+}
+
+@keyframes my {
+    0% {
+        color: #F8CD0A;
+    }
+
+    50% {
+        color: #fff;
+    }
+
+    100% {
+        color: #F8CD0A;
+    }
+}
+
+h5 {
+    min-width: 350px;
+    height: 45px;
+    background-color: #191970;
+    height: auto;
+    line-height: 45px;
+    padding: 0px 20px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: inline-block;
+    min-width: 190px;
+    -webkit-animation: my 700ms infinite;
+    -moz-animation: my 700ms infinite;
+    -o-animation: my 700ms infinite;
+    animation: my 700ms infinite;
+}
+
+.title-comm {
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    background-color: #fff;
+    text-align: center;
+
+    .title-holder {
+        min-width: 350px;
+        height: 45px;
+        background-color: #191970;
+        height: auto;
+        line-height: 45px;
+        padding: 0px 20px;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        display: inline-block;
+        min-width: 280px;
+        font-size: 24px;
+        font-weight: bold;
+        -webkit-animation: my 700ms infinite;
+        -moz-animation: my 700ms infinite;
+        -o-animation: my 700ms infinite;
+        animation: my 700ms infinite;
+    }
+
+    .title-holder:before {
+        content: "";
+        position: absolute;
+        right: -15px;
+        border-width: 0px;
+        bottom: 0px;
+        border-style: solid;
+        border-color: #191970 transparent;
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 23px solid transparent;
+        border-bottom: 22px solid transparent;
+        border-left: 15px solid #191970;
+    }
+
+    .title-holder:after {
+        content: "";
+        position: absolute;
+        left: -15px;
+        border-width: 0px;
+        bottom: 0px;
+        border-style: solid;
+        border-color: #191970 transparent;
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 23px solid transparent;
+        border-bottom: 22px solid transparent;
+        border-right: 15px solid #191970;
+    }
+}
+
+    .title-comm:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 60px;
+        border-top: 2px solid #d0d2d3;
+        z-index: 1;
+        display: block;
+    }
+
+
+/*.login {
+
+    .content {
+        margin: 8%;
+        background-color: #fff;
+        padding: 4rem 1rem 4rem 1rem;
+        box-shadow: 5px 5px 5px 5px rgba(0,0,139, .7);
+
+        .col-md-6 {
+            img {
+                max-width: 100%;
+                max-height: auto;
+            }
+
+            form {
+                .form-group {
+                    margin: 10px 0;
+
+
+
+                    .form-control {
+                        display: block;
+                        width: 100%;
+                        font-size: 1.2rem;
+                        font-weight: 400;
+                        line-height: 1.5;
+                        border-color: #191970 !important;
+                        border-style: solid !important;
+                        border-width: 0 0 1px 0 !important;
+                        padding: 0px !important;
+                        color: #495057;
+                        height: auto;
+                        border-radius: 0;
+                        background-color: #fff;
+                        background-clip: padding-box;
+                    }
+
+                    .form-control:focus {
+                        color: #495057;
+                        background-color: #fff;
+                        border-color: #fff;
+                        outline: 0;
+                        box-shadow: none;
+                    }
+                }
+
+                .btn-class {
+                    border-color: #191970;
+                    color: #191970;
+                }
+
+                .btn-class:hover {
+                    background-color: #191970;
+                    color: #fff;
+                }
+            }
+
+            .signin-text {
+                font-style: normal;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}*/

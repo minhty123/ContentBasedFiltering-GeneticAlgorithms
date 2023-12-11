@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký dạy bù - Teacher Timetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .text-theme {
+        color: #191970;
+    }
+
+    .input-infor {
+        margin: 20px 0;
+        border-radius: 20px;
+    }
+
+    .note {
+        word-wrap: word-break;
+    }
+    .note-title{
+        color: #191970;
+    }
+    .btn-register {
+        background: #191970;
+        color: #F8CD0A;
+    }
+        .btn-register:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+    .text-theme {
+        color: #F8CD0A;
+    }
+</style>
+<div class="row justify-content-center my-4">
+    <div class="col-xl-10 col-md-12">
+        <div class="card border-0">
+            <div class="card-body p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-12 my-5">
+                        <div class="note my-auto">
+                            <p class="fs-4 fw-bold note-title">Lưu ý</p>
+                            <p class="fst-italic fs-6 lh-base">
+                                Xin chào giảng viên,
+                                Chúng tôi xin thông báo rằng để đảm bảo chất lượng giảng dạy tốt nhất, giảng viên
+                                cần đăng ký dạy bù trước 1 tuần tính từ thời điểm đăng ký. Hệ thống
+                                sẽ tự động chọn ngày và thời gian thích hợp và thông báo.
+                            </p>
+                            <p class="fst-italic fs-6 lh-base">
+                                Điều này sẽ giúp bạn và học sinh chuẩn bị tốt hơn
+                                cho các buổi học bù và duy trì sự tiến bộ trong quá trình học tập. Xin
+                                cảm ơn bạn đã đồng hành cùng chúng tôi.
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-7 col-md-12 input-infor my-5 shadow">
+                        <div class="p-5">
+                            <div class="mb-5">
+                                <h3 class="h4 font-weight-bold text-theme">Vui lòng điền đầy đủ thông tin</h3>
+                            </div>
+                            @using (Html.BeginForm("Register", "TeachingSchedule", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+
+                                <div class="form-floating">
+                                    @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, "-- Chọn lớp --", new { @class = "form-control col-md-2", id = "ddlClassrooms" })
+                                    <label>Lớp</label>
+                                </div>
+                                <br />
+                                <div class="form-floating">
+                                    @Html.DropDownList("Subjects", new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control col-md-2", id = "ddlSubject" })
+                                    <label>Môn</label>
+                                </div>
+                                <br />
+                                <div class="form-floating">
+                                    <input type="number" class="col-md-2 form-control" id="number_lesson" name="number_lesson" min="1" max="10" value="1" />
+                                    <label>Số lượng tiết</label>
+                                </div>
+                                <br />
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-register">Đăng ký</button>
+                                </div>
+
+                                
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end card-body -->
+        </div>
+    </div>
+    <!-- end col -->
+</div>
+<!-- Row -->
+
+
+
+@section scripts{
+    <script>
+        function loadSubjects(classroomId) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var data = JSON.parse(this.responseText);
+                    var ddlSubject = document.getElementById("ddlSubject");
+                    ddlSubject.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.text = "-- Chọn môn --";
+                    option.value = "";
+                    ddlSubject.add(option);
+                    for (var i = 0; i < data.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = data[i].Text;
+                        option.value = data[i].Value;
+                        ddlSubject.add(option);
+                    }
+                }
+            };
+            xhr.open("GET", "/TeachingSchedule/LoadSubjects?classroomId=" + classroomId, true);
+            xhr.send();
+        }
+
+        document.getElementById("ddlClassrooms").addEventListener("change", function (e) {
+            var classroomId = e.target.value;
+            loadSubjects(classroomId);
+        });
+
+    </script>
+}
+

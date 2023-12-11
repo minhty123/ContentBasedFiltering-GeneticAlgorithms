@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeacherWorkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="IMAGES_NEW">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_NEWS" Type="Int32" />
+    <Property Name="ID_IMAGES_NEW_TYPE" Type="Int32" />
+    <Property Name="IMAGES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IMAGES_ALT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NEWS" Relationship="Self.PF_IMAGES_NEW_1" FromRole="IMAGES_NEW" ToRole="NEWS" />
+    <NavigationProperty Name="IMAGES_NEW_TYPE" Relationship="Self.PF_IMAGES_NEW_2" FromRole="IMAGES_NEW" ToRole="IMAGES_NEW_TYPE" />
+  </EntityType>
+  <EntityType Name="IMAGES_NEW_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="IMAGES_NEW" Relationship="Self.PF_IMAGES_NEW_2" FromRole="IMAGES_NEW_TYPE" ToRole="IMAGES_NEW" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TITLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DATESUBMIT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="IMAGES_NEW" Relationship="Self.PF_IMAGES_NEW_1" FromRole="NEWS" ToRole="IMAGES_NEW" />
+  </EntityType>
+  <Association Name="PF_IMAGES_NEW_1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1" />
+    <End Role="IMAGES_NEW" Type="Self.IMAGES_NEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_NEW">
+        <PropertyRef Name="ID_NEWS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_IMAGES_NEW_2">
+    <End Role="IMAGES_NEW_TYPE" Type="Self.IMAGES_NEW_TYPE" Multiplicity="0..1" />
+    <End Role="IMAGES_NEW" Type="Self.IMAGES_NEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES_NEW_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_NEW">
+        <PropertyRef Name="ID_IMAGES_NEW_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeacherWorkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="IMAGES_NEW" EntityType="Self.IMAGES_NEW" />
+    <EntitySet Name="IMAGES_NEW_TYPE" EntityType="Self.IMAGES_NEW_TYPE" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" />
+    <AssociationSet Name="PF_IMAGES_NEW_1" Association="Self.PF_IMAGES_NEW_1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="IMAGES_NEW" EntitySet="IMAGES_NEW" />
+    </AssociationSet>
+    <AssociationSet Name="PF_IMAGES_NEW_2" Association="Self.PF_IMAGES_NEW_2">
+      <End Role="IMAGES_NEW_TYPE" EntitySet="IMAGES_NEW_TYPE" />
+      <End Role="IMAGES_NEW" EntitySet="IMAGES_NEW" />
+    </AssociationSet>
+    <EntitySet Name="FILE_NOTIFICATION" EntityType="TeacherWorkModel.FILE_NOTIFICATION" />
+    <EntitySet Name="NOTIFICATIONs" EntityType="TeacherWorkModel.NOTIFICATION" />
+    <AssociationSet Name="PF_FILE_NOTIFICATION" Association="TeacherWorkModel.PF_FILE_NOTIFICATION">
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+      <End Role="FILE_NOTIFICATION" EntitySet="FILE_NOTIFICATION" />
+    </AssociationSet>
+    <EntitySet Name="ARRANGE_TIME_SLOT" EntityType="TeacherWorkModel.ARRANGE_TIME_SLOT" />
+    <EntitySet Name="CLASSROOMs" EntityType="TeacherWorkModel.CLASSROOM" />
+    <EntitySet Name="DAYs" EntityType="TeacherWorkModel.DAY" />
+    <EntitySet Name="ROOMs" EntityType="TeacherWorkModel.ROOM" />
+    <EntitySet Name="TEACHER_TYPE" EntityType="TeacherWorkModel.TEACHER_TYPE" />
+    <EntitySet Name="TIME_SLOT" EntityType="TeacherWorkModel.TIME_SLOT" />
+    <AssociationSet Name="PF_ARRANGE_TIME_SLOT_2" Association="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_2">
+      <End Role="TIME_SLOT" EntitySet="TIME_SLOT" />
+      <End Role="ARRANGE_TIME_SLOT" EntitySet="ARRANGE_TIME_SLOT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_TIME_SLOT" Association="TeacherWorkModel.PF_TIME_SLOT">
+      <End Role="DAY" EntitySet="DAYs" />
+      <End Role="TIME_SLOT" EntitySet="TIME_SLOT" />
+    </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="TeacherWorkModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="TeacherWorkModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="TeacherWorkModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="TeacherWorkModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="TeacherWorkModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="TeacherWorkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="TeacherWorkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="TeacherWorkModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="TEST_SCHEDULE" EntityType="TeacherWorkModel.TEST_SCHEDULE" />
+    <AssociationSet Name="TEST_SCHEDULE3" Association="TeacherWorkModel.TEST_SCHEDULE3">
+      <End Role="ROOM" EntitySet="ROOMs" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+    <EntitySet Name="TEACHERs" EntityType="TeacherWorkModel.TEACHER" />
+    <AssociationSet Name="FK__TEACHER__ID_USER__03F0984C" Association="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+    </AssociationSet>
+    <AssociationSet Name="PF_CLASSROOM" Association="TeacherWorkModel.PF_CLASSROOM">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="CLASSROOM" EntitySet="CLASSROOMs" />
+    </AssociationSet>
+    <AssociationSet Name="PF_TEACHER_1" Association="TeacherWorkModel.PF_TEACHER_1">
+      <End Role="TEACHER_TYPE" EntitySet="TEACHER_TYPE" />
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_SCHEDULE1" Association="TeacherWorkModel.TEST_SCHEDULE1">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+    <EntitySet Name="ACADEMIC_RANK" EntityType="TeacherWorkModel.ACADEMIC_RANK" />
+    <EntitySet Name="SUBJECTs" EntityType="TeacherWorkModel.SUBJECT" />
+    <AssociationSet Name="PF_TEACHER_2" Association="TeacherWorkModel.PF_TEACHER_2">
+      <End Role="ACADEMIC_RANK" EntitySet="ACADEMIC_RANK" />
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+    </AssociationSet>
+    <AssociationSet Name="PF_ARRANGE_TIME_SLOT_1" Association="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_1">
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+      <End Role="ARRANGE_TIME_SLOT" EntitySet="ARRANGE_TIME_SLOT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_SUBJECT_2" Association="TeacherWorkModel.PF_SUBJECT_2">
+      <End Role="CLASSROOM" EntitySet="CLASSROOMs" />
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SUBJECT__ID_ROOM__4D5F7D71" Association="TeacherWorkModel.FK__SUBJECT__ID_ROOM__4D5F7D71">
+      <End Role="ROOM" EntitySet="ROOMs" />
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="PF_SUBJECT_1" Association="TeacherWorkModel.PF_SUBJECT_1">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_SCHEDULE2" Association="TeacherWorkModel.TEST_SCHEDULE2">
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+    <EntitySet Name="MAKEUP_LESSON" EntityType="TeacherWorkModel.MAKEUP_LESSON" />
+    <AssociationSet Name="MAKEUP_LESSON2" Association="TeacherWorkModel.MAKEUP_LESSON2">
+      <End Role="CLASSROOM" EntitySet="CLASSROOMs" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MAKEUP_LE__ID_RO__4E53A1AA" Association="TeacherWorkModel.FK__MAKEUP_LE__ID_RO__4E53A1AA">
+      <End Role="ROOM" EntitySet="ROOMs" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <AssociationSet Name="MAKEUP_LESSON3" Association="TeacherWorkModel.MAKEUP_LESSON3">
+      <End Role="SUBJECT" EntitySet="SUBJECTs" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <EntitySet Name="APPLICATION_LEAVE" EntityType="TeacherWorkModel.APPLICATION_LEAVE" />
+    <AssociationSet Name="APPLICATIONLEAVE" Association="TeacherWorkModel.APPLICATIONLEAVE">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="APPLICATION_LEAVE" EntitySet="APPLICATION_LEAVE" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FILE_NOTIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_NOTIFICATION" Type="Int32" />
+    <Property Name="TITLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NAME_FILE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NOTIFICATION" Relationship="TeacherWorkModel.PF_FILE_NOTIFICATION" FromRole="FILE_NOTIFICATION" ToRole="NOTIFICATION" />
+  </EntityType>
+  <EntityType Name="NOTIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TITLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DATESUBMIT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FILE_NOTIFICATION" Relationship="TeacherWorkModel.PF_FILE_NOTIFICATION" FromRole="NOTIFICATION" ToRole="FILE_NOTIFICATION" />
+  </EntityType>
+  <Association Name="PF_FILE_NOTIFICATION">
+    <End Type="TeacherWorkModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.FILE_NOTIFICATION" Role="FILE_NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NOTIFICATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FILE_NOTIFICATION">
+        <PropertyRef Name="ID_NOTIFICATION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ARRANGE_TIME_SLOT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_SUBJECT" Type="Int32" />
+    <Property Name="ID_TIME_SLOT" Type="Int32" />
+    <NavigationProperty Name="TIME_SLOT" Relationship="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_2" FromRole="ARRANGE_TIME_SLOT" ToRole="TIME_SLOT" />
+    <NavigationProperty Name="SUBJECT" Relationship="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_1" FromRole="ARRANGE_TIME_SLOT" ToRole="SUBJECT" />
+  </EntityType>
+  <EntityType Name="CLASSROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_TEACHERCONSULTANCY" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="COURSE" Type="Int32" />
+    <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.PF_CLASSROOM" FromRole="CLASSROOM" ToRole="TEACHER" />
+    <NavigationProperty Name="SUBJECTs" Relationship="TeacherWorkModel.PF_SUBJECT_2" FromRole="CLASSROOM" ToRole="SUBJECT" />
+    <NavigationProperty Name="MAKEUP_LESSON" Relationship="TeacherWorkModel.MAKEUP_LESSON2" FromRole="CLASSROOM" ToRole="MAKEUP_LESSON" />
+  </EntityType>
+  <EntityType Name="DAY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TIME_SLOT" Relationship="TeacherWorkModel.PF_TIME_SLOT" FromRole="DAY" ToRole="TIME_SLOT" />
+  </EntityType>
+  <EntityType Name="ROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME_ROM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TEST_SCHEDULE" Relationship="TeacherWorkModel.TEST_SCHEDULE3" FromRole="ROOM" ToRole="TEST_SCHEDULE" />
+    <NavigationProperty Name="SUBJECTs" Relationship="TeacherWorkModel.FK__SUBJECT__ID_ROOM__4D5F7D71" FromRole="ROOM" ToRole="SUBJECT" />
+    <NavigationProperty Name="MAKEUP_LESSON" Relationship="TeacherWorkModel.FK__MAKEUP_LE__ID_RO__4E53A1AA" FromRole="ROOM" ToRole="MAKEUP_LESSON" />
+  </EntityType>
+  <EntityType Name="TEACHER_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TEACHERs" Relationship="TeacherWorkModel.PF_TEACHER_1" FromRole="TEACHER_TYPE" ToRole="TEACHER" />
+  </EntityType>
+  <EntityType Name="TIME_SLOT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_DAY" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ARRANGE_TIME_SLOT" Relationship="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_2" FromRole="TIME_SLOT" ToRole="ARRANGE_TIME_SLOT" />
+    <NavigationProperty Name="DAY" Relationship="TeacherWorkModel.PF_TIME_SLOT" FromRole="TIME_SLOT" ToRole="DAY" />
+  </EntityType>
+  <Association Name="PF_ARRANGE_TIME_SLOT_2">
+    <End Type="TeacherWorkModel.TIME_SLOT" Role="TIME_SLOT" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.ARRANGE_TIME_SLOT" Role="ARRANGE_TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIME_SLOT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARRANGE_TIME_SLOT">
+        <PropertyRef Name="ID_TIME_SLOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_TIME_SLOT">
+    <End Type="TeacherWorkModel.DAY" Role="DAY" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TIME_SLOT" Role="TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DAY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TIME_SLOT">
+        <PropertyRef Name="ID_DAY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="TeacherWorkModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="TeacherWorkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="TeacherWorkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="TeacherWorkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="TeacherWorkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="TeacherWorkModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="TEACHERs" Relationship="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C" FromRole="AspNetUser" ToRole="TEACHER" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TeacherWorkModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TeacherWorkModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="TeacherWorkModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="TEST_SCHEDULE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_TEACHER_CHECK" Type="Int32" />
+    <Property Name="ID_SUBJECT" Type="Int32" />
+    <Property Name="ID_ROOM" Type="Int32" />
+    <Property Name="NUMBER_STUDENT" Type="Int32" />
+    <Property Name="DATE" Type="DateTime" Precision="0" />
+    <Property Name="TIMESTART" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TIME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ROOM" Relationship="TeacherWorkModel.TEST_SCHEDULE3" FromRole="TEST_SCHEDULE" ToRole="ROOM" />
+    <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.TEST_SCHEDULE1" FromRole="TEST_SCHEDULE" ToRole="TEACHER" />
+    <NavigationProperty Name="SUBJECT" Relationship="TeacherWorkModel.TEST_SCHEDULE2" FromRole="TEST_SCHEDULE" ToRole="SUBJECT" />
+  </EntityType>
+  <Association Name="TEST_SCHEDULE3">
+    <End Type="TeacherWorkModel.ROOM" Role="ROOM" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEST_SCHEDULE" Role="TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TEACHER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_TEACHERTYPE" Type="Int32" />
+    <Property Name="ID_ACADEMIC_RANK" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_USER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PROFILE_BACKGROUND" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DATE_BIRTHDAY" Type="DateTime" Precision="0" />
+    <Property Name="POSITION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C" FromRole="TEACHER" ToRole="AspNetUser" />
+    <NavigationProperty Name="CLASSROOMs" Relationship="TeacherWorkModel.PF_CLASSROOM" FromRole="TEACHER" ToRole="CLASSROOM" />
+    <NavigationProperty Name="TEACHER_TYPE" Relationship="TeacherWorkModel.PF_TEACHER_1" FromRole="TEACHER" ToRole="TEACHER_TYPE" />
+    <NavigationProperty Name="TEST_SCHEDULE" Relationship="TeacherWorkModel.TEST_SCHEDULE1" FromRole="TEACHER" ToRole="TEST_SCHEDULE" />
+    <NavigationProperty Name="ACADEMIC_RANK" Relationship="TeacherWorkModel.PF_TEACHER_2" FromRole="TEACHER" ToRole="ACADEMIC_RANK" />
+    <NavigationProperty Name="SUBJECTs" Relationship="TeacherWorkModel.PF_SUBJECT_1" FromRole="TEACHER" ToRole="SUBJECT" />
+    <NavigationProperty Name="APPLICATION_LEAVE" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="TEACHER" ToRole="APPLICATION_LEAVE" />
+  </EntityType>
+  <Association Name="FK__TEACHER__ID_USER__03F0984C">
+    <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_CLASSROOM">
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.CLASSROOM" Role="CLASSROOM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLASSROOM">
+        <PropertyRef Name="ID_TEACHERCONSULTANCY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_TEACHER_1">
+    <End Type="TeacherWorkModel.TEACHER_TYPE" Role="TEACHER_TYPE" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_TEACHERTYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_SCHEDULE1">
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEST_SCHEDULE" Role="TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_TEACHER_CHECK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ACADEMIC_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TEACHERs" Relationship="TeacherWorkModel.PF_TEACHER_2" FromRole="ACADEMIC_RANK" ToRole="TEACHER" />
+  </EntityType>
+  <EntityType Name="SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_TEACHER" Type="Int32" />
+    <Property Name="ID_CLASSROOM" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="START_DAY" Type="DateTime" Precision="0" />
+    <Property Name="END_DAY" Type="DateTime" Precision="0" />
+    <Property Name="NUMBER_OF_CREDIT" Type="Int32" />
+    <Property Name="ID_ROOM" Type="Int32" />
+    <NavigationProperty Name="ARRANGE_TIME_SLOT" Relationship="TeacherWorkModel.PF_ARRANGE_TIME_SLOT_1" FromRole="SUBJECT" ToRole="ARRANGE_TIME_SLOT" />
+    <NavigationProperty Name="CLASSROOM" Relationship="TeacherWorkModel.PF_SUBJECT_2" FromRole="SUBJECT" ToRole="CLASSROOM" />
+    <NavigationProperty Name="ROOM" Relationship="TeacherWorkModel.FK__SUBJECT__ID_ROOM__4D5F7D71" FromRole="SUBJECT" ToRole="ROOM" />
+    <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.PF_SUBJECT_1" FromRole="SUBJECT" ToRole="TEACHER" />
+    <NavigationProperty Name="TEST_SCHEDULE" Relationship="TeacherWorkModel.TEST_SCHEDULE2" FromRole="SUBJECT" ToRole="TEST_SCHEDULE" />
+    <NavigationProperty Name="MAKEUP_LESSON" Relationship="TeacherWorkModel.MAKEUP_LESSON3" FromRole="SUBJECT" ToRole="MAKEUP_LESSON" />
+  </EntityType>
+  <Association Name="PF_TEACHER_2">
+    <End Type="TeacherWorkModel.ACADEMIC_RANK" Role="ACADEMIC_RANK" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACADEMIC_RANK">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_ACADEMIC_RANK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_ARRANGE_TIME_SLOT_1">
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.ARRANGE_TIME_SLOT" Role="ARRANGE_TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARRANGE_TIME_SLOT">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_SUBJECT_2">
+    <End Type="TeacherWorkModel.CLASSROOM" Role="CLASSROOM" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_CLASSROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SUBJECT__ID_ROOM__4D5F7D71">
+    <End Type="TeacherWorkModel.ROOM" Role="ROOM" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_SUBJECT_1">
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_TEACHER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_SCHEDULE2">
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.TEST_SCHEDULE" Role="TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MAKEUP_LESSON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_CLASS" Type="Int32" />
+    <Property Name="ID_SUBJECT" Type="Int32" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="TIMESTART" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TIMEEND" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SITUATION" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ID_ROOM" Type="Int32" />
+    <NavigationProperty Name="CLASSROOM" Relationship="TeacherWorkModel.MAKEUP_LESSON2" FromRole="MAKEUP_LESSON" ToRole="CLASSROOM" />
+    <NavigationProperty Name="ROOM" Relationship="TeacherWorkModel.FK__MAKEUP_LE__ID_RO__4E53A1AA" FromRole="MAKEUP_LESSON" ToRole="ROOM" />
+    <NavigationProperty Name="SUBJECT" Relationship="TeacherWorkModel.MAKEUP_LESSON3" FromRole="MAKEUP_LESSON" ToRole="SUBJECT" />
+  </EntityType>
+  <Association Name="MAKEUP_LESSON2">
+    <End Type="TeacherWorkModel.CLASSROOM" Role="CLASSROOM" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.MAKEUP_LESSON" Role="MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_CLASS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MAKEUP_LE__ID_RO__4E53A1AA">
+    <End Type="TeacherWorkModel.ROOM" Role="ROOM" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.MAKEUP_LESSON" Role="MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MAKEUP_LESSON3">
+    <End Type="TeacherWorkModel.SUBJECT" Role="SUBJECT" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.MAKEUP_LESSON" Role="MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="APPLICATION_LEAVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_TEACHER" Type="Int32" />
+    <Property Name="DATESTART" Type="DateTime" Precision="0" />
+    <Property Name="REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DATEEND" Type="DateTime" Precision="0" />
+    <Property Name="TYPELEAVE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="APPLICATION_LEAVE" ToRole="TEACHER" />
+  </EntityType>
+  <Association Name="APPLICATIONLEAVE">
+    <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
+    <End Type="TeacherWorkModel.APPLICATION_LEAVE" Role="APPLICATION_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APPLICATION_LEAVE">
+        <PropertyRef Name="ID_TEACHER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeacherWorkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ACADEMIC_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="ntext" />
+  </EntityType>
+  <EntityType Name="APPLICATION_LEAVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TEACHER" Type="int" />
+    <Property Name="DATESTART" Type="date" />
+    <Property Name="REASON" Type="nvarchar" MaxLength="100" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+    <Property Name="DATEEND" Type="date" />
+    <Property Name="TYPELEAVE" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ARRANGE_TIME_SLOT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_SUBJECT" Type="int" />
+    <Property Name="ID_TIME_SLOT" Type="int" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLASSROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TEACHERCONSULTANCY" Type="int" />
+    <Property Name="NAME" Type="nvarchar(max)" />
+    <Property Name="COURSE" Type="int" />
+  </EntityType>
+  <EntityType Name="DAY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FILE_NOTIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_NOTIFICATION" Type="int" />
+    <Property Name="TITLE" Type="ntext" />
+    <Property Name="NAME_FILE" Type="ntext" />
+  </EntityType>
+  <EntityType Name="IMAGES_NEW">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_NEWS" Type="int" />
+    <Property Name="ID_IMAGES_NEW_TYPE" Type="int" />
+    <Property Name="IMAGES" Type="ntext" />
+    <Property Name="IMAGES_ALT" Type="ntext" />
+  </EntityType>
+  <EntityType Name="IMAGES_NEW_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="ntext" />
+  </EntityType>
+  <EntityType Name="MAKEUP_LESSON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_CLASS" Type="int" />
+    <Property Name="ID_SUBJECT" Type="int" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="TIMESTART" Type="nvarchar" MaxLength="128" />
+    <Property Name="TIMEEND" Type="nvarchar" MaxLength="128" />
+    <Property Name="SITUATION" Type="nvarchar" MaxLength="128" />
+    <Property Name="ID_ROOM" Type="int" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITLE" Type="ntext" />
+    <Property Name="CONTENT" Type="ntext" />
+    <Property Name="DATESUBMIT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NOTIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITLE" Type="ntext" />
+    <Property Name="CONTENT" Type="ntext" />
+    <Property Name="DATESUBMIT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_ROM" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TEACHER" Type="int" />
+    <Property Name="ID_CLASSROOM" Type="int" />
+    <Property Name="NAME" Type="nvarchar(max)" />
+    <Property Name="START_DAY" Type="date" />
+    <Property Name="END_DAY" Type="date" />
+    <Property Name="NUMBER_OF_CREDIT" Type="int" />
+    <Property Name="ID_ROOM" Type="int" />
+  </EntityType>
+  <EntityType Name="TEACHER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TEACHERTYPE" Type="int" />
+    <Property Name="ID_ACADEMIC_RANK" Type="int" />
+    <Property Name="NAME" Type="ntext" />
+    <Property Name="ID_USER" Type="nvarchar" MaxLength="128" />
+    <Property Name="PROFILE_BACKGROUND" Type="nvarchar(max)" />
+    <Property Name="DATE_BIRTHDAY" Type="date" />
+    <Property Name="POSITION" Type="nvarchar(max)" />
+    <Property Name="ADDRESS" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TEACHER_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="ntext" />
+  </EntityType>
+  <EntityType Name="TEST_SCHEDULE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_TEACHER_CHECK" Type="int" />
+    <Property Name="ID_SUBJECT" Type="int" />
+    <Property Name="ID_ROOM" Type="int" />
+    <Property Name="NUMBER_STUDENT" Type="int" />
+    <Property Name="DATE" Type="date" />
+    <Property Name="TIMESTART" Type="nvarchar" MaxLength="128" />
+    <Property Name="TIME" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="TIME_SLOT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_DAY" Type="int" />
+    <Property Name="NAME" Type="ntext" />
+  </EntityType>
+  <Association Name="APPLICATIONLEAVE">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
+    <End Role="APPLICATION_LEAVE" Type="Self.APPLICATION_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APPLICATION_LEAVE">
+        <PropertyRef Name="ID_TEACHER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MAKEUP_LE__ID_RO__4E53A1AA">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="MAKEUP_LESSON" Type="Self.MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SUBJECT__ID_ROOM__4D5F7D71">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TEACHER__ID_USER__03F0984C">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MAKEUP_LESSON2">
+    <End Role="CLASSROOM" Type="Self.CLASSROOM" Multiplicity="0..1" />
+    <End Role="MAKEUP_LESSON" Type="Self.MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_CLASS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MAKEUP_LESSON3">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="MAKEUP_LESSON" Type="Self.MAKEUP_LESSON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MAKEUP_LESSON">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_ARRANGE_TIME_SLOT_1">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="ARRANGE_TIME_SLOT" Type="Self.ARRANGE_TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARRANGE_TIME_SLOT">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_ARRANGE_TIME_SLOT_2">
+    <End Role="TIME_SLOT" Type="Self.TIME_SLOT" Multiplicity="0..1" />
+    <End Role="ARRANGE_TIME_SLOT" Type="Self.ARRANGE_TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIME_SLOT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARRANGE_TIME_SLOT">
+        <PropertyRef Name="ID_TIME_SLOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_CLASSROOM">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
+    <End Role="CLASSROOM" Type="Self.CLASSROOM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLASSROOM">
+        <PropertyRef Name="ID_TEACHERCONSULTANCY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_FILE_NOTIFICATION">
+    <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="0..1" />
+    <End Role="FILE_NOTIFICATION" Type="Self.FILE_NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NOTIFICATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FILE_NOTIFICATION">
+        <PropertyRef Name="ID_NOTIFICATION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_IMAGES_NEW_1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1" />
+    <End Role="IMAGES_NEW" Type="Self.IMAGES_NEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_NEW">
+        <PropertyRef Name="ID_NEWS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_IMAGES_NEW_2">
+    <End Role="IMAGES_NEW_TYPE" Type="Self.IMAGES_NEW_TYPE" Multiplicity="0..1" />
+    <End Role="IMAGES_NEW" Type="Self.IMAGES_NEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES_NEW_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMAGES_NEW">
+        <PropertyRef Name="ID_IMAGES_NEW_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_SUBJECT_1">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_TEACHER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_SUBJECT_2">
+    <End Role="CLASSROOM" Type="Self.CLASSROOM" Multiplicity="0..1" />
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="ID_CLASSROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_TEACHER_1">
+    <End Role="TEACHER_TYPE" Type="Self.TEACHER_TYPE" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_TEACHERTYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_TEACHER_2">
+    <End Role="ACADEMIC_RANK" Type="Self.ACADEMIC_RANK" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACADEMIC_RANK">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_ACADEMIC_RANK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PF_TIME_SLOT">
+    <End Role="DAY" Type="Self.DAY" Multiplicity="0..1" />
+    <End Role="TIME_SLOT" Type="Self.TIME_SLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DAY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TIME_SLOT">
+        <PropertyRef Name="ID_DAY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_SCHEDULE1">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
+    <End Role="TEST_SCHEDULE" Type="Self.TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_TEACHER_CHECK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_SCHEDULE2">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="TEST_SCHEDULE" Type="Self.TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_SUBJECT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_SCHEDULE3">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="TEST_SCHEDULE" Type="Self.TEST_SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEST_SCHEDULE">
+        <PropertyRef Name="ID_ROOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeacherWorkModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ACADEMIC_RANK" EntityType="Self.ACADEMIC_RANK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="APPLICATION_LEAVE" EntityType="Self.APPLICATION_LEAVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ARRANGE_TIME_SLOT" EntityType="Self.ARRANGE_TIME_SLOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASSROOM" EntityType="Self.CLASSROOM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DAY" EntityType="Self.DAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FILE_NOTIFICATION" EntityType="Self.FILE_NOTIFICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES_NEW" EntityType="Self.IMAGES_NEW" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES_NEW_TYPE" EntityType="Self.IMAGES_NEW_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAKEUP_LESSON" EntityType="Self.MAKEUP_LESSON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NOTIFICATION" EntityType="Self.NOTIFICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROOM" EntityType="Self.ROOM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECT" EntityType="Self.SUBJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER" EntityType="Self.TEACHER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER_TYPE" EntityType="Self.TEACHER_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEST_SCHEDULE" EntityType="Self.TEST_SCHEDULE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIME_SLOT" EntityType="Self.TIME_SLOT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="APPLICATIONLEAVE" Association="Self.APPLICATIONLEAVE">
+      <End Role="TEACHER" EntitySet="TEACHER" />
+      <End Role="APPLICATION_LEAVE" EntitySet="APPLICATION_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MAKEUP_LE__ID_RO__4E53A1AA" Association="Self.FK__MAKEUP_LE__ID_RO__4E53A1AA">
+      <End Role="ROOM" EntitySet="ROOM" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SUBJECT__ID_ROOM__4D5F7D71" Association="Self.FK__SUBJECT__ID_ROOM__4D5F7D71">
+      <End Role="ROOM" EntitySet="ROOM" />
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TEACHER__ID_USER__03F0984C" Association="Self.FK__TEACHER__ID_USER__03F0984C">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="MAKEUP_LESSON2" Association="Self.MAKEUP_LESSON2">
+      <End Role="CLASSROOM" EntitySet="CLASSROOM" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <AssociationSet Name="MAKEUP_LESSON3" Association="Self.MAKEUP_LESSON3">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+    </AssociationSet>
+    <AssociationSet Name="PF_ARRANGE_TIME_SLOT_1" Association="Self.PF_ARRANGE_TIME_SLOT_1">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="ARRANGE_TIME_SLOT" EntitySet="ARRANGE_TIME_SLOT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_ARRANGE_TIME_SLOT_2" Association="Self.PF_ARRANGE_TIME_SLOT_2">
+      <End Role="TIME_SLOT" EntitySet="TIME_SLOT" />
+      <End Role="ARRANGE_TIME_SLOT" EntitySet="ARRANGE_TIME_SLOT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_CLASSROOM" Association="Self.PF_CLASSROOM">
+      <End Role="TEACHER" EntitySet="TEACHER" />
+      <End Role="CLASSROOM" EntitySet="CLASSROOM" />
+    </AssociationSet>
+    <AssociationSet Name="PF_FILE_NOTIFICATION" Association="Self.PF_FILE_NOTIFICATION">
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+      <End Role="FILE_NOTIFICATION" EntitySet="FILE_NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="PF_IMAGES_NEW_1" Association="Self.PF_IMAGES_NEW_1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="IMAGES_NEW" EntitySet="IMAGES_NEW" />
+    </AssociationSet>
+    <AssociationSet Name="PF_IMAGES_NEW_2" Association="Self.PF_IMAGES_NEW_2">
+      <End Role="IMAGES_NEW_TYPE" EntitySet="IMAGES_NEW_TYPE" />
+      <End Role="IMAGES_NEW" EntitySet="IMAGES_NEW" />
+    </AssociationSet>
+    <AssociationSet Name="PF_SUBJECT_1" Association="Self.PF_SUBJECT_1">
+      <End Role="TEACHER" EntitySet="TEACHER" />
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_SUBJECT_2" Association="Self.PF_SUBJECT_2">
+      <End Role="CLASSROOM" EntitySet="CLASSROOM" />
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="PF_TEACHER_1" Association="Self.PF_TEACHER_1">
+      <End Role="TEACHER_TYPE" EntitySet="TEACHER_TYPE" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="PF_TEACHER_2" Association="Self.PF_TEACHER_2">
+      <End Role="ACADEMIC_RANK" EntitySet="ACADEMIC_RANK" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="PF_TIME_SLOT" Association="Self.PF_TIME_SLOT">
+      <End Role="DAY" EntitySet="DAY" />
+      <End Role="TIME_SLOT" EntitySet="TIME_SLOT" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_SCHEDULE1" Association="Self.TEST_SCHEDULE1">
+      <End Role="TEACHER" EntitySet="TEACHER" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_SCHEDULE2" Association="Self.TEST_SCHEDULE2">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_SCHEDULE3" Association="Self.TEST_SCHEDULE3">
+      <End Role="ROOM" EntitySet="ROOM" />
+      <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

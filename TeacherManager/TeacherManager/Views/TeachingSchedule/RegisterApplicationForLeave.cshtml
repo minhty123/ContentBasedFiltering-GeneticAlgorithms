@@ -1,0 +1,130 @@
+﻿@model TeacherManager.Models.APPLICATION_LEAVE
+
+@{
+    ViewBag.Title = "Đăng ký nghỉ phép - Teacher Timetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .text-theme {
+        color: #191970;
+    }
+
+    .input-infor {
+        margin: 20px 0;
+        border-radius: 20px;
+    }
+
+    .note {
+        word-wrap: word-break;
+    }
+
+    .note-title {
+        color: #191970;
+    }
+
+    .btn-register {
+        background: #191970;
+        color: #F8CD0A;
+    }
+
+        .btn-register:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+
+    .text-theme {
+        color: #F8CD0A;
+    }
+    .form-check-label, .form-check-input {
+        font-size: 14px;
+    }
+</style>
+<div class="row justify-content-center my-4">
+    <div class="col-xl-10 col-md-12">
+        <div class="card border-0">
+            <div class="card-body p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="p-5 input-infor my-5 mx-3 shadow">
+                            <div class="mb-5">
+                                <h3 class="h4 font-weight-bold text-theme">ĐƠN XIN NGHỈ PHÉP</h3>
+                            </div>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="form-floating mb-2">
+                                        @Html.EditorFor(model => model.DATESTART, new { htmlAttributes = new { type = "date", id = "floatingDatestart", placeholder = "Nhập ngày", @class = "form-control"} })
+                                        <label for="floatingDatestart">Ngày bắt đầu</label>
+                                        @Html.ValidationMessageFor(model => model.DATESTART, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        @Html.EditorFor(model => model.DATEEND, new { htmlAttributes = new { type = "date", placeholder = "Nhập ngày", @class = "form-control", id = "floatingDateend" } })
+                                        <label for="floatingDateend">Ngày kết thúc</label>
+                                        @Html.ValidationMessageFor(model => model.DATEEND, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        @Html.EditorFor(model => model.REASON, new { htmlAttributes = new { id = "floatingReason", placeholder = "Nhập lý do", @class = "form-control" } })
+                                        <label class="form-label" for="floatingReason">Lý do</label>
+                                        @Html.ValidationMessageFor(model => model.REASON, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group mb-3 d-flex align-content-center justify-content-center">
+                                        <div class="col-md-6 d-flex flex-row">
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Phép năm", new { @class = "form-check-input", @checked = "checked" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Phép năm</label>
+                                            </div>
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Nghỉ chế độ", new { @class = "form-check-input" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Nghỉ chế độ</label>
+                                            </div>
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Nghỉ ốm", new { @class = "form-check-input" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Nghỉ ốm</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <div class="col-md-offset-2 col-md-12 d-flex align-content-center justify-content-center">
+                                            <input type="submit" value="Đăng ký" class="btn btn-register" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12 my-5">
+                        <div class="note my-auto ms-4">
+                            <p class="fs-4 fw-bold note-title text-theme">Lưu ý</p>
+                            <p class="fst-italic fs-6 lh-base">
+                                Chào bạn,
+                                Để đảm bảo quy trình đăng ký nghỉ dạy được thuận tiện và đảm bảo sự suôn sẻ, yêu cầu người đăng ký phải đăng ký trước ít nhất 1 tuần trước khi nghỉ dạy. Để đảm bảo rằng các yêu cầu nghỉ dạy có thể được giải quyết kịp thời và các biện pháp thích hợp có thể được thực hiện để giải quyết bất kỳ vấn đề nào.
+                            </p>
+                            <p class="fst-italic fs-6 lh-base">
+                                Hi vọng rằng quy trình đăng ký sẽ giúp bạn có được một thời gian làm việc hiệu quả. Nếu bạn cần thêm thông tin hoặc có bất kỳ câu hỏi nào, vui lòng liên hệ với phòng hành chính để được hỗ trợ.
+                            </p>
+                            <p class="fst-italic fs-6 lh-base">
+                                Chân thành cảm ơn!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- end card-body -->
+        </div>
+    </div>
+    <!-- end col -->
+</div>
+

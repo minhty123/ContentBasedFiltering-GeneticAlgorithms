@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TeacherManager.Models.MAKEUP_LESSON>
+
+@foreach (var item in Model)
+{
+<a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#applicationModal-@item.ID">
+        <div class="mr-3">
+            <div class="icon-circle bg-danger">
+                <i class="fas fa-calendar text-white"></i>
+            </div>
+        </div>
+        <div>
+            <div class="small text-gray-500">@item.SUBJECT.TEACHER.NAME</div>
+            <span class="font-weight-bold">Dạy bù: @item.SUBJECT.NAME</span>
+        </div>
+</a>
+
+
+}
+
+
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", ".modalLink", function (e) {
+                e.preventDefault();
+                $('#exampleModal').modal('show');
+                $.post($(this).attr("href"), function (data) {
+                    $('#exampleModal .modal-body').html(data);
+                });
+            });
+        });
+    </script>
+}
+

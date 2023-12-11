@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Lịch giảng dạy - Teacher TimeTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="nav nav-tabs m-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Lịch dạy</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Lịch coi thi</button>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <div class="m-5" id='calendartimetable'></div>
+    </div>
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="m-5" id='calendarExamtable'></div>
+    </div>
+</div>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+
+
+@section scripts{
+
+    <script>
+
+       
+
+        $(document).ready(function () {
+            var calendar = $('#calendartimetable');
+            var currentStartOfWeek = moment(calendar.fullCalendar('getView').start).toISOString();
+
+            calendar.fullCalendar({
+                buttonText: {
+                    week: "Tuần",
+                    today: "Hôm nay"
+                },
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'agendaWeek'
+                },
+                defaultView: 'agendaWeek',
+                minTime: "07:00:00",
+                maxTime: "18:00:00",
+                contentHeight: 'auto', // giới hạn chiều cao của lịch
+                editable: false,
+                eventLimit: true,
+
+
+                events: {
+                    url: '/TeachingSchedule/GetEventsTimetable',
+                    data: function () {
+                        return { startOfWeek: currentStartOfWeek };
+                    },
+                    dataType: "json",
+                    cache: false // Thêm thuộc tính cache với giá trị là false
+                },
+
+                viewRender: function (view, element) {
+                    currentStartOfWeek = moment(view.start).toISOString();
+                    calendar.fullCalendar("refetchEvents");
+                }
+            });
+            window.addEventListener('resize', function () {
+                var screenWidth = window.innerWidth;
+                if (screenWidth < 768) {
+                    calendar.fullCalendar('changeView', 'listWeek');
+                }
+            });
+        });
+
+        $("#profile-tab").click(function () {
+            var calendar = $('#calendarExamtable');
+            var currentStartOfWeek = moment(calendar.fullCalendar('getView').start).toISOString();
+
+            calendar.fullCalendar({
+                buttonText: {
+                    week: "Tuần",
+                    today: "Hôm nay"
+                },
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'agendaWeek'
+                },
+                defaultView: 'agendaWeek',
+                minTime: "07:00:00",
+                maxTime: "18:00:00",
+                contentHeight: 'auto', // giới hạn chiều cao của lịch
+                editable: false,
+                eventLimit: true,
+                lang: 'vi',
+                events: {
+                    url: '/TeachingSchedule/GetEventsExamsTimetable',
+                    data: function () {
+                        return { startOfWeek: currentStartOfWeek };
+                    },
+                    dataType: "json",
+                    cache: false // Thêm thuộc tính cache với giá trị là false
+                },
+
+                viewRender: function (view, element) {
+                    currentStartOfWeek = moment(view.start).toISOString();
+                    calendar.fullCalendar("refetchEvents");
+                }
+            });
+            window.addEventListener('resize', function () {
+                var screenWidth = window.innerWidth;
+                if (screenWidth < 768) {
+                    calendar.fullCalendar('changeView', 'listWeek');
+                }
+            });
+        });
+
+        
+
+        $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
+            var calendar = $(e.target.hash).find(".m-5");
+            if (calendar.length > 0) {
+                var currentStartOfWeek = moment(calendar.fullCalendar('getView').start).toISOString();
+                calendar.fullCalendar("removeEventSources");
+                calendar.fullCalendar("addEventSource", {
+                    url: '/TeachingSchedule/GetEventsExamsTimetable',
+                    data: function () {
+                        return { startOfWeek: currentStartOfWeek };
+                    },
+                    type: "GET",
+                    cache: false
+                });
+                calendar.fullCalendar("refetchEvents");
+            }
+        });
+
+
+
+    </script>
+}
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+

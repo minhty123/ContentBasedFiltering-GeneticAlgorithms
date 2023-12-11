@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ExamTimetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+@Html.Partial("Nav_Tabs_TimeTable")
+<div class="m-5" id='calendar'></div>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            var calendar = $('#calendar');
+            var currentStartOfWeek = moment(calendar.fullCalendar('getView').start).toISOString();
+
+            calendar.fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek'
+                },
+                defaultView: 'agendaWeek',
+                minTime: "07:00:00",
+                maxTime: "18:00:00",
+                editable: false,
+                eventLimit: true,
+                events: {
+                    url: '/TeachingSchedule/GetEventsExamsTimetable',
+                    data: function () {
+                        return { startOfWeek: currentStartOfWeek };
+                    },
+                    dataType: "json",
+                    cache: false // Thêm thuộc tính cache với giá trị là false
+                },
+
+                // Chỉnh sửa lại tên của thuộc tính trong đối tượng events trong phần viewRender
+                viewRender: function (view, element) {
+                    currentStartOfWeek = moment(view.start).toISOString();
+                    calendar.fullCalendar("refetchEvents");
+                }
+            });
+        });
+
+
+
+    </script>
+}
+
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+
+

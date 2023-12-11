@@ -1,0 +1,194 @@
+﻿@using Microsoft.AspNet.Identity
+@using TeacherManager.Models
+<style>
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        background-color: #f1f1f1;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 5;
+        transition: all 0.1s;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block
+    }
+
+    .profile ul {
+        background-color: #fff;
+        width: 180px;
+        height: 280px;
+        border-radius: 10px;
+        right: 0;
+        top: 7px;
+        position: absolute;
+        padding: 8px;
+        transition: all 0.1s;
+        z-index: 1
+    }
+
+
+        .profile ul li {
+            list-style: none;
+            text-align: left;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: all 0.1s;
+            cursor: pointer;
+            border-radius: 4px
+        }
+
+            .profile ul li:hover {
+                background-color: #eee
+            }
+
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        background-color: #f1f1f1;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 5;
+        transition: all 0.1s;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block
+    }
+
+    .profile ul {
+        background-color: #fff;
+        width: 180px;
+        height: 280px;
+        border-radius: 10px;
+        right: 0;
+        top: 7px;
+        position: absolute;
+        padding: 8px;
+        transition: all 0.1s;
+        z-index: 1
+    }
+
+
+        .profile ul li {
+            list-style: none;
+            text-align: left;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: all 0.1s;
+            cursor: pointer;
+            border-radius: 4px
+        }
+
+            .profile ul li:hover {
+                background-color: #eee
+            }
+
+            .profile ul li i {
+                margin-right: 7px;
+                font-size: 14px;
+                color:black;
+            }
+    #loginLink {
+        color: #F8CD0A;
+    }
+</style>
+@if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right imgLogin" }))
+        {
+            @Html.AntiForgeryToken()
+
+            TEACHER tEACHER = new TEACHER();
+
+
+<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <div class="profile">
+                    @{
+                        string temp = tEACHER.GetImgProfile(User.Identity.GetUserId());
+                        if (temp != null)
+                        {
+                            <img class="dropbtn" src="~/Content/images/account/@temp" width="50px" height="50px" style="border-radius:50%">
+                        }
+                        else
+                        {
+                            <img class="dropbtn" src="~/Content/images/account/icons8-account-64.png" width="50px" height="50px" style="border-radius:50%">
+                        }
+                    }
+
+                    <div class="dropdown-content">
+                        <ul>
+                            <li>
+                                <span><a class="nav-link" href="/quan-ly-tai-khoan"><i class="fa-solid fa-user-large"></i>Tài khoản</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/quan-ly-don-xin-phep-don-day-bu"><i class="fa-solid fa-calendar-minus"></i>Quản lý đơn ĐK</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/lich-giang-day"><i class="fa-solid fa-calendar-days"></i>Lịch dạy</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/dang-ky-day-bu"><i class="fa-solid fa-calendar-plus"></i>Đăng ký dạy bù</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/dang-ky-nghi-phep"><i class="fa-solid fa-calendar-minus"></i>Đăng ký nghỉ</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            @*<li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+        </ul>
+
+    }
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+    <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link", data_bs_toggle = "modal", data_bs_target = "#exampleModal" })</li>
+    @Html.Action("Login", "Account")
+</ul>
+
+
+}
+
+
